@@ -3,6 +3,7 @@ import string
 
 KEYWORDS = ["val", "var", "type", "while", "return"]
 COMPOUND_OPERATORS = ["->", "+=", "-=", "*=", "/="]
+BRACKETS = ["{","}","[","]","(",")"]
 
 class LexType(Enum):
     NUMBER = auto()
@@ -10,6 +11,7 @@ class LexType(Enum):
     OPERATOR = auto()
     KEYWORD = auto()
     IDENTIFIER = auto()
+    BRACKET = auto()
 
 class LexToken:
     def __init__(self, token_type, value):
@@ -58,23 +60,19 @@ def lex(code):
             contents = contents.replace("\\n", "\n").replace("\\t", "\t")
             res.append(LexToken(LexType.STRING, contents))
 
+        elif head in "()[]{}":  # brackets
+            res.append(LexToken(LexType.BRACKET,head))
+
         elif head in string.punctuation:  # operators
-            if head in map(lambda x: x[0], COMPOUND_OPERATORS):
-                op = head
-                if i >= len(code):
-                    res.append(LexToken(LexType.OPERATOR, op))
-                else:
+            op = head
+            if i >= len(code): pass                
+            elif code[i+1] in string.punctuation and code[i+1] not in BRACKETS:
+                op += code[i+1]
+                if op in COMPOUND_OPERATORS:
                     i += 1
-                    if code[i] in string.punctuation:
-                        op += code[i]
-                    else:
-                        i -= 1
-                    for j in COMPOUND_OPERATORS:
-                        if j == op:
-                            res.append(LexToken(LexType.OPERATOR, op))
-                            break
-                    else:
-                        res.append(LexToken(LexType.OPERATOR, op))
+                else:
+                    op = op[0]
+            res.append(LexToken(LexType.OPERATOR, op))
 
         i += 1
     return res
