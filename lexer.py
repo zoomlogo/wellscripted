@@ -60,7 +60,7 @@ def lex(code):
             contents = contents.replace("\\n", "\n").replace("\\t", "\t")
             res.append(LexToken(LexType.STRING, contents))
 
-        elif head in "()[]{}":  # brackets
+        elif head in BRACKETS:  # brackets
             res.append(LexToken(LexType.BRACKET,head))
 
         elif head in string.punctuation:  # operators
