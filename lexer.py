@@ -2,7 +2,21 @@ from enum import Enum, auto
 import string
 
 KEYWORDS = ["val", "var", "type", "while", "return"]
-COMPOUND_OPERATORS = ["->", "+=", "-=", "*=", "/="]
+COMPOUND_OPERATORS = [
+    "->",
+    "+=",
+    "-=",
+    "*=",
+    "/=",
+    "%=",
+    "&=",
+    "|=",
+    "^=",
+    "**",
+    "!=",
+    "<=",
+    ">=",                                               
+]
 BRACKETS = ["{","}","[","]","(",")"]
 
 class LexType(Enum):
