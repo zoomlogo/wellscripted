@@ -1,7 +1,9 @@
-program: (expr";")*
-       | "val" iden ":=" expr";"
-       | "var" iden ":= expr";"
-       | "while" "(" expr ")" expr";"
+program: Expr*
+
+Expr: expr";"
+    | "val" iden ":=" expr";"
+    | "var" iden ":= expr";"
+    | "while" "(" expr ")" expr";"
 
 expr: iden
     | const
