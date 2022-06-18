@@ -2,16 +2,19 @@ program: Expr*
 
 Expr: expr";"
     | "val" iden ":=" expr";"
-    | "var" iden ":= expr";"
+    | "var" iden ":=" expr";"
     | "while" "(" expr ")" expr";"
 
 expr: iden
     | const
     | "{" (expr;)* "}"
     | "return" expr
-    | "-" expr
-    | "~" expr
-    | expr "*" expr | expr "/" expr
-    | expr "+" expr | expr "-" expr
-    | expr "&" expr | expr "|" expr
+    | uop expr
+    | expr bop expr
     | expr "?" expr ":" expr
+
+uop: "-" | "~"
+
+bop: "*" | "/"
+   | "+" | "-"
+   | "&" | "|"
