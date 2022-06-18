@@ -7,7 +7,7 @@ Expr: expr";"
 
 expr: iden
     | const
-    | "{" (expr;)* "}"
+    | "{" (expr";")* "}"
     | "return" expr
     | uop expr
     | expr bop expr
