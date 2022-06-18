@@ -1,0 +1,15 @@
+program: (expr";")*
+       | "val" iden ":=" expr";"
+       | "var" iden ":= expr";"
+       | "while" "(" expr ")" expr";"
+
+expr: iden
+    | const
+    | "{" (expr;)* "}"
+    | "return" expr
+    | "-" expr
+    | "~" expr
+    | expr "*" expr | expr "/" expr
+    | expr "+" expr | expr "-" expr
+    | expr "&" expr | expr "|" expr
+    | expr "?" expr ":" expr
