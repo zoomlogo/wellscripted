@@ -15,7 +15,7 @@ COMPOUND_OPERATORS = [
     "**",
     "!=",
     "<=",
-    ">=",                                               
+    ">=",
 ]
 BRACKETS = ["{","}","[","]","(",")"]
 
@@ -93,13 +93,13 @@ def lex(code):
 
 if __name__ == "__main__":
     test_string = """val collatz = (n: Integer) -> {
-        var ar = [];
-        while (n > 1) ar = ar.tack(n =
-            n % 2 ?
-            1 + 3 * n :
-            n / 2
-        ); return ar;
-    }
+    var ar = [];
+    while (n > 1) ar = ar.tack(n =
+        n % 2 ?
+        1 + 3 * n :
+        n / 2
+    ); return ar;
+}
     """
     print(test_string)
     print(*lex(test_string), sep="\n")
