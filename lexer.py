@@ -1,6 +1,12 @@
 from enum import Enum, auto
 import string
 
+__all__ = [
+    "LexType",
+    "LexToken",
+    "lex"
+]
+
 KEYWORDS = ["val", "var", "type", "while", "return"]
 COMPOUND_OPERATORS = [
     "->",
@@ -92,7 +98,7 @@ def lex(code):
     return res
 
 if __name__ == "__main__":
-    test_string = """val collatz = (n: Integer) -> {
+    test_string = """val collatz = (n) -> {
     var ar = [];
     while (n > 1) ar = ar.tack(n =
         n % 2 ?
