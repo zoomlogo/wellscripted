@@ -39,7 +39,7 @@ class LexToken:
         self.value = value
 
     def __repr__(self):
-        return f"LexToken(\"{self.value}\",{self.type})"
+        return f"LexToken(\"{self.value}\", {self.type})"
 
 def lex(code):
     res = []
@@ -68,7 +68,7 @@ def lex(code):
             res.append(LexToken(LexType.NUMBER, contents))
 
         elif head == '"':  # string
-            contents = "\""
+            contents = "" #  "\""
             i += 1
             while i < len(code) and code[i] != '"':
                 if code[i] == "\\":
@@ -76,7 +76,7 @@ def lex(code):
                     i += 1
                 contents += code[i]
                 i += 1
-            contents += code[i]
+            # contents += code[i]
             contents = contents.replace("\\n", "\n").replace("\\t", "\t")
             res.append(LexToken(LexType.STRING, contents))
 
